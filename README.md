@@ -1,25 +1,31 @@
-# PIT data — the demand-test sample
+# Is your Indian equity backtest lying to you?
 
-The free asset for Phase 0 of the data venture: a one-click notebook that *proves* the survivorship + look-ahead gap a prospect's current data is hiding. This is what you hand a quant/PMS/fintech lead so the value sells itself.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Finance-broski/pit-data-sample/blob/main/PIT_survivorship_demo.ipynb)
 
-## What's here
-- **`PIT_survivorship_demo.ipynb`** — self-contained Colab/Jupyter notebook. Runs the *same* value strategy four ways and shows the gap. Outputs are pre-embedded, so it's compelling even before they run it; `Runtime → Run all` reproduces it in ~10s with zero setup.
-- **`preview_equity_curves.png`** — the money chart (four equity curves). Drop it straight into a forum post, X thread, or DM.
+A runnable, ~60-second demo. Most Indian equity backtests are quietly inflated by two bugs that live in the **data**, not the strategy:
 
-## The punchline it lands
+- **Survivorship bias** — delisted / merged companies are dropped from almost every Indian data source, so your backtest never holds the value-traps that actually blew up.
+- **Look-ahead bias** — retail screeners show *restated / latest* fundamentals, not what was knowable on the date, so the strategy silently "sees the future."
+
+This notebook runs the **same value strategy four ways** on a controlled dataset and shows how much each bias adds.
+
+## The result
+
 | Treatment | CAGR | Sharpe | Max DD |
 |---|---|---|---|
-| Honest (PIT + survivorship-free) | 12.0% | 0.79 | −35% |
+| Honest (point-in-time + survivorship-free) | 12.0% | 0.79 | −35% |
 | + Survivorship bias only | 17.1% | 1.09 | −27% |
 | + Look-ahead bias only | 14.9% | 0.96 | −34% |
-| **Naive (both — typical screener backtest)** | **20.4%** | **1.26** | **−29%** |
+| **Naive (both — a typical screener backtest)** | **20.4%** | **1.26** | **−29%** |
 
-**+8.4 pp/yr CAGR and +0.47 Sharpe of pure data bias** — no strategy change. The survivorship-only effect (~+5pp) is calibrated to match published research (NIFTY Smallcap 250: survivor-only overstates returns ~4.9 pp/yr), so the demo is realistic, not theatrical.
+**+8.4 pp/yr CAGR and +0.47 Sharpe of pure data bias** — no change to the strategy. The survivorship-only effect (~+5 pp/yr) is calibrated to published research on the NIFTY Smallcap 250 (survivor-only overstates returns ~4.9 pp/yr), so the gap is realistic, not theatrical. The tell that a backtest has these bugs: a Sharpe that looks too good and a suspiciously shallow drawdown.
 
-## How to use it in the demand test
-1. Upload the `.ipynb` to **Google Colab**, set link-sharing, and paste the link in your outreach (forum reply, X DM, LinkedIn). One click, runs in the browser — no install friction.
-2. Or attach the `.ipynb` directly / screenshot the PNG for the hook.
-3. The ask stays: *"Try it, then — how are you handling point-in-time + delisted names today, and would you pay for a feed that just gives you the honest line?"* (full script in `docs/gtm/DEMAND_TEST.md`).
+## Run it
 
-## Honesty note (keep it in)
-The dataset is **simulated and labelled as such** — calibrated to real published bias magnitudes. The real product is the same structure on real NSE/BSE names. The notebook has a **"plug in YOUR data"** cell with the exact schema your pipeline outputs, so the real-data version is a swap-in once a prospect wants a sample on actual tickers. Don't pass the simulation off as real data — the credibility *is* the honesty.
+Click **Open in Colab** above → `Runtime → Run all`. ~10 seconds, no setup (it only uses numpy / pandas / matplotlib). Or open `PIT_survivorship_demo.ipynb` in any Jupyter environment.
+
+## A note on the data
+
+The dataset is **simulated and labelled as such**, calibrated to real published bias magnitudes — the *mechanism* is honest even though the tickers aren't real. The notebook includes a "plug in your own data" cell with the schema for running it on real names.
+
+It's built from ongoing work on real **point-in-time, survivorship-bias-free NSE/BSE fundamentals + corporate-action-adjusted prices**. If clean historical Indian data is a problem you run into, open an issue.
