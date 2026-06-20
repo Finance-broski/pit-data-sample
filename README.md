@@ -40,5 +40,6 @@ This is a taste. The full set: ~3,800 names of CA-adjusted **total-return** pric
 Income-statement fundamentals today (full balance-sheet / cash-flow on the roadmap). EOD, not intraday. This sample is a bounded slice, not the maintained universe.
 
 ---
+*Data is derived from public exchange filings (NSE/BSE bhavcopy, corporate-action announcements, and as-filed XBRL results) and provided for research and illustration.*
 
 *Built by **Finance-broski**. Free under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) — use it, fork it, build on it; just keep the attribution.*
