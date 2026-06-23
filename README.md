@@ -12,10 +12,10 @@ This is a **free, real-data sample** of a point-in-time, survivorship-bias-free 
 | file | size | what it proves |
 |---|---|---|
 | `survivorship_universe.csv` | 3,838 names | every name that traded 2010–2026, including **1,209 dead/delisted** with first- and last-traded dates. The names other sources silently drop. |
-| `prices_sample.csv` | 99 names | daily **CA-adjusted** close + **total-return** close (`tr_close`) + delivery % across 2010–2026. Split/bonus crashes are corrected and demergers handled (total-return continuous across the spin-off) — the unadjusted-split bug that other samples ship is gone. Rights / capital-reduction events (whose total-return can't be cleanly reconstructed without subscription terms) are excluded from this sample and adjusted in the full dataset. |
+| `prices_sample.csv` | 99 names | daily **CA-adjusted** close + **total-return** close (`tr_close`) + delivery % across 2010–2026. Split/bonus crashes are corrected and demergers handled (total-return continuous across the spin-off) — the unadjusted-split bug that other samples ship is gone. Rename chains (e.g. Bajaj Auto Finance→Bajaj Finance) are spliced into one continuous series. Rights / capital-reduction events (whose total-return can't be cleanly reconstructed without subscription terms) are excluded from this sample and adjusted in the full dataset. `deliv_pct` is **blank (NaN) before 2021-06-07** — NSE did not publish deliverable-% before then, so it's marked unavailable rather than a false 0. |
 | `fundamentals_sample.csv` | 17 names | as-reported quarterly revenue / PAT / EPS **stamped with `announce_date`** — the date the number became public, not a restated figure. Median 33-day lag from period-end. |
 
-*(Money columns in ₹ crore; `eps_basic` in ₹/share; `announce_lag_days` = announce_date − period_end. In `survivorship_universe.csv`, `status` is complete for all 3,838 names; `company_name` is present for ~72% and `listing_date` for ~61% — the rest are delisted / BSE-only names where a clean public name/date isn't available.)*
+*(Money columns in ₹ crore; `eps_basic` in ₹/share; `announce_lag_days` = announce_date − period_end. In `survivorship_universe.csv`, `status` is complete for all 3,838 names; `company_name` is present for ~62% and `listing_date` for ~61% — the rest are delisted / BSE-only names where a clean public name isn't available.)*
 
 ## Poke it yourself (30 seconds)
 
